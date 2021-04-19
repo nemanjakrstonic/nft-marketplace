@@ -51,7 +51,7 @@ class FeaturedPartners extends React.Component {
                 <div className="row">
                     <div className="col-12">
                         <div>
-                            <h4 className="mb-5 pl-4">Featured partners</h4>
+                            <h4 className="pl-4">Featured partners</h4>
                         </div>
                         <Carousel
                             responsive={responsive}

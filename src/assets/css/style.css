@@ -108,6 +108,7 @@ input::-ms-input-placeholder {
     border-radius: 40px;
     outline: none;
     box-shadow: none;
+    transition: color 200ms, box-shadow 200ms, border 200ms;
 }
 .btn:focus {
     outline: none;
@@ -123,6 +124,13 @@ input::-ms-input-placeholder {
     border: none;
     line-height: 23px;
 }
+.btn.btn--gradient:hover {
+    box-shadow: 0 0 0 3px #FFE5DE;
+}
+.btn.btn--gradient:disabled {
+    pointer-events: none;
+    background: #FFCABD;
+}
 .btn.btn--white {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -130,6 +138,14 @@ input::-ms-input-placeholder {
     color: #262338;
     border: 2px solid #D9DBE9;
     line-height: 21px;
+}
+.btn.btn--white:hover {
+    border-color: #FEB09B;
+    background-image: -webkit-gradient( linear, left top, right bottom, color-stop(0, #FE7B59), color-stop(1, #FD169C) );
+    background-image: gradient( linear, left top, right bottom, color-stop(0, #FE7B59), color-stop(1, #FD169C) );
+    color:transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 .footer-wrapper {
     border-top: 1px solid #EFF0F7;
@@ -154,7 +170,8 @@ input::-ms-input-placeholder {
 }
 .featured-partners {
     border-radius: 16px;
-    padding: 40px 15px;
+    padding: 40px 15px 0 15px;
+    overflow: hidden;
 }
 .featured-partner {
     background: #fff;
@@ -164,6 +181,21 @@ input::-ms-input-placeholder {
     flex-direction: column;
     width: 100%;
     justify-content: center;
+    margin-bottom: 40px;
+    transition: all 200ms;
+}
+.featured-partner:hover {
+    box-shadow: 0 40px 80px 5px rgba(20, 20, 43, 0.16);
+    margin-bottom: 0;
+}
+.featured-partner:hover .partner-brand {
+    margin-bottom: 65px;
+}
+body .react-multi-carousel-list {
+    overflow: unset;
+}
+body .react-multi-carousel-track {
+    padding: 40px 0 70px 0;
 }
 .react-multi-carousel-item a {
     color: initial;
@@ -194,6 +226,7 @@ input::-ms-input-placeholder {
     display: inline-block;
     object-fit: contain;
     margin: 30px auto 40px auto;
+    transition: all 200ms;
 }
 .featured-partner .title {
     text-align: center;

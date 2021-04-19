@@ -28,7 +28,7 @@ module.exports = {
         image: '/img/partners/partner2.png',
         profile_image: '',
         rank: 2,
-        count: 34,
+        count: 35,
         url: '',
         address: '0xC6b7E71D81CD06FBc8506bC6b7E71D81CD06FBc8506b',
         instagram: 'instagram.com/userprofile',
