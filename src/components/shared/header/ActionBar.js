@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 class ActionBar extends React.Component {
     
@@ -14,8 +15,8 @@ class ActionBar extends React.Component {
                         </div>
                     </form>
                 </div>
-                <button className="btn btn--gradient ml-4">Login</button>
-                <button className="btn btn--white ml-3">Connect wallet</button>
+                <Link to="#" className="btn btn--gradient ml-4">Login</Link>
+                <Link to="#" className="btn btn--white ml-3">Connect wallet</Link>
             </div>
         )
     }

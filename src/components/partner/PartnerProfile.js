@@ -16,7 +16,6 @@ export default class PartnerProfile extends React.Component {
     
     changeTab(e) {
         const newTab = e.target.getAttribute("data-tab");
-        console.log(newTab);
         this.setState({
             activeTab : newTab,
         });
@@ -25,8 +24,6 @@ export default class PartnerProfile extends React.Component {
     render() {
         const partnerId = this.props.match.params.partnerId;
         const partnerInfo = partners[partnerId];
-        // const tabs = Object.keys(partnerInfo.artefacts);
-        // console.log(tabs);
         return (
             <div>
                 <Navbar { ...this.props } />

@@ -5,7 +5,6 @@ export default class YourBid extends React.Component {
     newBid(e) {
         e.preventDefault();
         const newBid = this.amount.value;
-        console.log(newBid, this.props.currentBid);
         if (newBid > this.props.currentBid) {
             this.props.updateBid(newBid);
             this.form.reset();
