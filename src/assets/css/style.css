@@ -193,6 +193,7 @@ input::-ms-input-placeholder {
 }
 body .react-multi-carousel-list {
     overflow: unset;
+    overflow: unset;
 }
 body .react-multi-carousel-track {
     padding: 40px 0 70px 0;
