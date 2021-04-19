@@ -17,7 +17,10 @@ export default class YourBid extends React.Component {
             <div>
                 <div className="your-bid">
                     <form ref={(input) => this.form = input} onSubmit={(e) => this.newBid(e)}>
-                        <input type="text" placeholder="Enter amount..." ref={(input) => this.amount = input} />
+                        <label className="currency-after">
+                            <input type="text" placeholder="Enter amount..." ref={(input) => this.amount = input} />
+                            <span className="currency">ADA</span>
+                        </label>
                         <button type="submit" className="btn btn--gradient ml-3">Bid now</button>
                     </form>
                 </div>

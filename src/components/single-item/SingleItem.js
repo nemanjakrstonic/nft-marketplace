@@ -28,9 +28,9 @@ class SingleItem extends React.Component {
         return (
             <div>
                 <Navbar { ...this.props } />
-                <div className="container container--extended mt-5">
+                <div className="container mt-5">
                     <div className="row">
-                        <div className="col-md-6 pl-md-0 pr-md-5">
+                        <div className="col-md-6">
                             <div className="bck-gray single-item">
                                 <img src={artefactInfo.image} alt="" />
                                 <div className="info">
@@ -45,26 +45,28 @@ class SingleItem extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-6 pl-md-5 single-item-info">
-                            <h2 className="font-weight-normal py-5 mt-4">Place a bid</h2>
-                            <Timer time={artefactInfo.time} />
-                            <p className="desc">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. </p>
-                            <div className="row-info">
-                                <span>Category: </span>
-                                <span className="text-orange">{ artefactInfo.category }</span>
-                            </div>
-                            <div className="row-info">
-                                <span>Owner: </span>
-                                <span className="text-orange">@{ artefactInfo.owner }</span>
-                            </div>
-                            <h4 className="smaller font-weight-normal mt-5 mb-4">Your bid</h4>
-                            { this.state.yourBid !== 0 ?
-                                <div>
-                                    <YourCurrentBid bid={this.state.yourBid} />
-                                    <h6 className="font-weight-normal mt-5 mb-3">Want to bid more?</h6>
+                        <div className="col-md-6 single-item-info">
+                            <div className="pl-md-5">
+                                <h2 className="font-weight-normal py-5 mt-4">Place a bid</h2>
+                                <Timer time={artefactInfo.time} />
+                                <p className="desc">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. </p>
+                                <div className="row-info">
+                                    <span>Category: </span>
+                                    <span className="text-orange">{ artefactInfo.category }</span>
                                 </div>
-                                : '' }
-                            <YourBid updateBid={this.updateBid} currentBid={artefactInfo.current_bid} />
+                                <div className="row-info">
+                                    <span>Owner: </span>
+                                    <span className="text-orange">@{ artefactInfo.owner }</span>
+                                </div>
+                                <h4 className="smaller font-weight-normal mt-5 mb-4">Your bid</h4>
+                                { this.state.yourBid !== 0 ?
+                                    <div>
+                                        <YourCurrentBid bid={this.state.yourBid} />
+                                        <h6 className="font-weight-normal mt-5 mb-3">Want to bid more?</h6>
+                                    </div>
+                                    : '' }
+                                <YourBid updateBid={this.updateBid} currentBid={artefactInfo.current_bid} />
+                            </div>
                         </div>
                     </div>
                 </div>

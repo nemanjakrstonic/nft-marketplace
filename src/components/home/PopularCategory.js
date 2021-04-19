@@ -18,7 +18,7 @@ export default class PopularCategory extends React.Component {
                 </div>
                 <div className="info">
                     <h4 className="smaller mb-0">{ category.name }</h4>
-                    <p className="label-orange"><span className="count">{ category.count }</span><span className="unit">items</span></p>
+                    <p className="label-orange"><span className="count">{ category.count }</span><span className="unit"> items</span></p>
                 </div>
             </Link>
         )

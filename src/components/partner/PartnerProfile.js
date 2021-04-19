@@ -54,7 +54,7 @@ export default class PartnerProfile extends React.Component {
                                     </p>
                                 </div>
                                 <h1 className="mb-5">@{ partnerInfo.name }</h1>
-                                <p className="description">Wolfram Research is an American multinational company that creates computational technology. Wolfram's flagship product is the technical computing program Wolfram Mathematica, first released on June 23, 1988. This profile is aimed at sharing unique digital assets related to mathematics and physics. </p>
+                                <p className="description">{ partnerInfo.description }</p>
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@ export default class PartnerProfile extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="empty-space-100" />
+                <div className="empty-space-130" />
                 <div className="container">
                     <div className="row">
                         <div className="col-12">
