@@ -28,7 +28,6 @@ export default class Timer extends React.Component {
         };
     }
     componentDidMount() {
-        // console.log(this.props.time);
         this.setState({
             seconds: this.props.time
         }, () => {

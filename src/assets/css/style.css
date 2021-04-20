@@ -27,8 +27,8 @@ h4.smaller {
     background: #EFF0F7;
 }
 .text-gradient {
-    background-image: -webkit-gradient( linear, left top, right bottom, color-stop(0, #FE7B59), color-stop(1, #FD169C) );
-    background-image: gradient( linear, left top, right bottom, color-stop(0, #FE7B59), color-stop(1, #FD169C) );
+    background-image: -webkit-gradient( linear, left top, right bottom, color-stop(0, #FE7B59), color-stop(1, #FE497A) );
+    background-image: gradient( linear, left top, right bottom, color-stop(0, #FE7B59), color-stop(1, #FE497A) );
     color:transparent;
     -webkit-background-clip: text;
     background-clip: text;
@@ -63,6 +63,32 @@ h4.smaller {
     font-weight: 400;
     text-decoration: none;
     padding: 5px 15px;
+    position: relative;
+    display: inline-block;
+}
+.footer-link:after,
+.menu-items li a:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url("../img/ring.png") no-repeat center;
+    background-size: contain;
+    width: 12px;
+    height: 12px;
+    display: block;
+    opacity: 0;
+    visibility: 0;
+    transition: all 200ms;
+}
+.footer-link:after {
+    top: -5px;
+    right: -15px;
+}
+.footer-link:hover:after,
+.menu-items li a:hover:after {
+    opacity: 1;
+    visibility: 1;
 }
 .action-bar {
     margin-left: auto;
@@ -77,6 +103,14 @@ input {
     outline: none;
     border: none;
     padding: 14px 20px 14px 20px;
+    line-height: 20px;
+    transition: all 200ms;
+    border: 1px solid transparent;
+}
+input:focus {
+    background: #FCFCFC;
+    border-color: #FE7B59;
+    box-shadow: 0 0 0 3px #FFE5DE;
 }
 input::placeholder {
     color: #A0A3BD;
@@ -108,6 +142,7 @@ input::-ms-input-placeholder {
     border-radius: 40px;
     outline: none;
     box-shadow: none;
+    transition: all 200ms;
 }
 .btn:focus {
     outline: none;
@@ -118,10 +153,17 @@ input::-ms-input-placeholder {
     font-size: 18px;
 }
 .btn.btn--gradient {
-    background: linear-gradient(95.08deg, #FE7B59 2.49%, #FE497A 97.18%, #FD169C 97.19%);
+    background: linear-gradient(95.08deg, #FE7B59 0, #FE497A 100%);
     color: #fff;
     border: none;
     line-height: 23px;
+}
+.btn.btn--gradient:hover {
+    box-shadow: 0 0 0 3px #FFE5DE;
+}
+.btn.btn--gradient:disabled {
+    pointer-events: none;
+    background: #FFCABD;
 }
 .btn.btn--white {
     padding-top: 12px;
@@ -130,6 +172,14 @@ input::-ms-input-placeholder {
     color: #262338;
     border: 2px solid #D9DBE9;
     line-height: 21px;
+}
+.btn.btn--white:hover {
+    border-color: #FEB09B;
+    background-image: -webkit-gradient(linear,left top,right bottom,color-stop(0,#fe7b59),color-stop(1,#fd169c));
+    background-image: gradient(linear,left top,right bottom,color-stop(0,#fe7b59),color-stop(1,#fd169c));
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 .footer-wrapper {
     border-top: 1px solid #EFF0F7;
@@ -142,6 +192,8 @@ input::-ms-input-placeholder {
     color: #6E7191;
     margin: 6px 0;
     display: inline-block;
+    position: relative;
+    font-size: 12px;
 }
 .footer-link:hover {
     color: #6E7191;
@@ -151,10 +203,12 @@ input::-ms-input-placeholder {
     color: #6E7191;
     margin-bottom: 0;
     margin-top: 20px;
+    font-size: 12px;
 }
 .featured-partners {
     border-radius: 16px;
-    padding: 40px 15px;
+    padding: 40px 15px 0 15px;
+    overflow: hidden;
 }
 .featured-partner {
     background: #fff;
@@ -164,6 +218,21 @@ input::-ms-input-placeholder {
     flex-direction: column;
     width: 100%;
     justify-content: center;
+    margin-bottom: 40px;
+    transition: all 250ms;
+}
+.featured-partner:hover {
+    box-shadow: 0 40px 80px 5px rgba(20, 20, 43, 0.16);
+    margin-bottom: 0;
+}
+.featured-partner:hover .partner-brand {
+    margin-bottom: 80px;
+}
+body .react-multi-carousel-list {
+    overflow: unset;
+}
+body .react-multi-carousel-track {
+    padding: 40px 0 70px 0;
 }
 .react-multi-carousel-item a {
     color: initial;
@@ -194,6 +263,7 @@ input::-ms-input-placeholder {
     display: inline-block;
     object-fit: contain;
     margin: 30px auto 40px auto;
+    transition: all 250ms;
 }
 .featured-partner .title {
     text-align: center;
@@ -203,11 +273,13 @@ input::-ms-input-placeholder {
     font-size: 12px;
     line-height: 14px;
     margin-right: 4px;
+    color: #4E4B66;
 }
 .featured-partner .unit {
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
+    color: #A0A3BD;
 }
 .carousel-button-group {
     position: absolute;
@@ -354,7 +426,8 @@ body .popular-category {
 }
 .partner-profile-wrapper {
     position: relative;
-    padding: 140px 40px 80px 390px;
+    padding: 140px 40px 20px 390px;
+    min-height: 400px;
 }
 .partner-profile .description {
     color: #6E7191;
@@ -443,23 +516,26 @@ body .popular-category {
     margin-top: 4px;
 }
 .tabs button.active {
-    background-image: -webkit-gradient( linear, left top, right bottom, color-stop(0, #FE7B59), color-stop(1, #FD169C) );
-    background-image: gradient( linear, left top, right bottom, color-stop(0, #FE7B59), color-stop(1, #FD169C) );
+    background-image: -webkit-gradient( linear, left top, right bottom, color-stop(0, #FE7B59), color-stop(1, #FE497A) );
+    background-image: gradient( linear, left top, right bottom, color-stop(0, #FE7B59), color-stop(1, #FE497A) );
     color:transparent;
     -webkit-background-clip: text;
     background-clip: text;
 }
 .tabs button.active:after {
-    background: linear-gradient(to left top, #FE7B59, #FD169C);
+    background: linear-gradient(to left top, #FE7B59, #FE497A);
 }
 .single-item {
     padding: 80px;
     border-radius: 16px;
+    left: -40px;
+    position: relative;
 }
 .single-item img {
     border-radius: 16px;
     overflow: hidden;
     width: 100%;
+    box-shadow: 0 40px 80px 5px rgba(20, 20, 43, 0.16);
 }
 .single-item .info {
     padding-top: 80px;
@@ -562,7 +638,25 @@ body .popular-category {
     line-height: 31px;
     color: #4E4B66;
 }
-
+.currency-after {
+    position: relative;
+}
+.currency-after .currency {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    bottom: 0;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FE7B59;
+    display: flex;
+    align-items: center;
+}
+.currency-after input {
+    padding-right: 60px;
+    min-width: 285px;
+}
 
 
 
@@ -577,7 +671,7 @@ body .popular-category {
     .container-md,
     .container-sm,
     .container-xl {
-        max-width: 1200px;
+        max-width: 1230px;
     }
     .container--extended {
         max-width: 1280px;
