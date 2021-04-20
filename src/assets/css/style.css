@@ -232,9 +232,12 @@ textarea {
 .featured-partner:hover {
     box-shadow: 0 40px 80px 5px rgba(20, 20, 43, 0.16);
     margin-bottom: 0;
+    padding-bottom: 40px;
 }
 .featured-partner:hover .partner-brand {
-    margin-bottom: 80px;
+    margin-bottom: 40px;
+    width: 130px;
+    height: 100px;
 }
 body .react-multi-carousel-list {
     overflow: unset;
