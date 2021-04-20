@@ -7,7 +7,7 @@ class ActionBar extends React.Component {
         
         return (
             <div className="action-bar">
-                <div className="header-search">
+                <div className="header-search mr-3">
                     <form>
                         <div className="input-image">
                             <img src="/img/gray-search.svg" alt="" />
@@ -16,7 +16,7 @@ class ActionBar extends React.Component {
                     </form>
                 </div>
                 {/*<Link to="#" className="btn btn--gradient ml-4">Login</Link>*/}
-                <Link to="#" className="btn btn--white ml-3">Connect wallet</Link>
+                <Link to="#" className="btn btn--white ml-5">Connect wallet</Link>
             </div>
         )
     }
