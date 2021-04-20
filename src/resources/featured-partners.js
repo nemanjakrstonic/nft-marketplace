@@ -41,7 +41,7 @@ module.exports = {
             }
         }
     },
-    nike: {
+    spacebudz: {
         name: 'SpaceBudz',
         image: 'https://spacebudz.io/static/logo3-7aa4e49988dbea5cadd90c0ddb94149c.svg',
         profile_image: '',
@@ -54,11 +54,11 @@ module.exports = {
         artefacts: {
             all: {
                 name: 'All',
-                items: ['artefact_1', 'artefact_2', 'artefact_3', 'artefact_4'],
+                items: ['spacebud412', 'spacebud351', 'spacebud745', 'spacebud502'],
             },
             active: {
                 name: 'Active',
-                items: ['artefact_1', 'artefact_2'],
+                items: ['spacebud412', 'spacebud351', 'spacebud745'],
             }
         }
     },
@@ -125,7 +125,7 @@ module.exports = {
             }
         }
     },
-    nike_1: {
+    nike: {
         name: 'Nike',
         image: '/img/partners/partner3.png',
         profile_image: '',

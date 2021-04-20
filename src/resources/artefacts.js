@@ -118,34 +118,44 @@ module.exports = {
         time: 63019,
         owner: 'Wolfram'
     },
-    space_tiger: {
+    spacebud412: {
         id: 13,
-        image: '/img/partner-items/wolfram/wolfram.jpeg',
+        image: '/img/partner-items/spacebudz/1.jpg',
         category: 'Collectibles',
-        name: 'Spacetiger',
-        current_bid: 400,
+        name: 'Space Bud 412',
+        current_bid: 50,
         highest_bid: 0.005,
         time: 63019,
         owner: 'Wolfram'
     },
-    space_car: {
+    spacebud351: {
         id: 13,
-        image: '/img/partner-items/wolfram/wolfram.jpeg',
+        image: '/img/partner-items/spacebudz/2.jpg',
         category: 'Collectibles',
-        name: 'Wolfram',
-        current_bid: 400,
+        name: 'Space Bud 351',
+        current_bid: 120,
         highest_bid: 0.005,
-        time: 63019,
+        time: 43019,
         owner: 'Wolfram'
     },
-    space: {
+    spacebud745: {
         id: 13,
-        image: '/img/partner-items/wolfram/wolfram.jpeg',
+        image: '/img/partner-items/spacebudz/3.jpg',
         category: 'Collectibles',
-        name: 'Wolfram',
+        name: 'Space Bud 745',
         current_bid: 400,
         highest_bid: 0.005,
-        time: 63019,
+        time: 83019,
+        owner: 'Wolfram'
+    },
+    spacebud502: {
+        id: 13,
+        image: '/img/partner-items/spacebudz/4.jpg',
+        category: 'Collectibles',
+        name: 'Space Bud 502',
+        current_bid: 400,
+        highest_bid: 0.005,
+        time: 70019,
         owner: 'Wolfram'
     }
 };

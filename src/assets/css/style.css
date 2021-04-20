@@ -494,6 +494,7 @@ body .popular-category {
     width: 100%;
     justify-content: center;
     color: #6E7191;
+    font-size: 12px;
     cursor: pointer;
 }
 .profile-card .instagram span {
