@@ -2,7 +2,7 @@ module.exports = {
     wolfram: {
         name: 'Wolfram',
         image: '/img/partners/partner1.png',
-        profile_image: '/img/partners/partnerw.png',
+        profile_image: '/img/partners/wolfram.png',
         description: 'Wolfram Research is an American multinational company that creates computational technology. Wolfram\'s flagship product is the technical computing program Wolfram Mathematica, first released on June 23, 1988. This profile is aimed at sharing unique digital assets related to mathematics and physics.',
         rank: 1,
         count: 35,
