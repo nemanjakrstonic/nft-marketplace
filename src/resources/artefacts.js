@@ -117,5 +117,35 @@ module.exports = {
         highest_bid: 0.005,
         time: 63019,
         owner: 'Wolfram'
+    },
+    space_tiger: {
+        id: 13,
+        image: '/img/partner-items/wolfram/wolfram.jpeg',
+        category: 'Collectibles',
+        name: 'Spacetiger',
+        current_bid: 400,
+        highest_bid: 0.005,
+        time: 63019,
+        owner: 'Wolfram'
+    },
+    space_car: {
+        id: 13,
+        image: '/img/partner-items/wolfram/wolfram.jpeg',
+        category: 'Collectibles',
+        name: 'Wolfram',
+        current_bid: 400,
+        highest_bid: 0.005,
+        time: 63019,
+        owner: 'Wolfram'
+    },
+    space: {
+        id: 13,
+        image: '/img/partner-items/wolfram/wolfram.jpeg',
+        category: 'Collectibles',
+        name: 'Wolfram',
+        current_bid: 400,
+        highest_bid: 0.005,
+        time: 63019,
+        owner: 'Wolfram'
     }
 };
