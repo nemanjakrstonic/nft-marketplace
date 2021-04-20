@@ -22,7 +22,7 @@ class Footer extends React.Component {
                             <p className="mb-0"><Link to="#" className="footer-link">Social</Link></p>
                         </div>
                         <div className="col-md-3">
-                            <h6 className="pb-1 mb-3">For partners</h6>
+                            <h6 className="pb-1 mb-3">Partners</h6>
                             <p className="mb-0"><Link to="#" className="footer-link">Submit a partner profile</Link></p>
                         </div>
                         <div className="col-md-3">
