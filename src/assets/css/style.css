@@ -300,14 +300,15 @@ body .react-multi-carousel-track {
 .carousel-button-group button {
     width: 40px;
     height: 40px;
-    opacity: 0.6;
+    opacity: 1;
     border: none;
     border-radius: 40px;
     outline: none;
     margin-left: 10px;
 }
 .carousel-button-group button:not(.disable) {
-    background: #FFCABD;
+    background: #F9D9D4;
+    opacity: 1;
 }
 .carousel-button-group button:not(.disable):nth-child(1) img:nth-child(1) {
     display: none;

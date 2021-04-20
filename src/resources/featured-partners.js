@@ -58,7 +58,7 @@ module.exports = {
             },
             active: {
                 name: 'Active',
-                items: ['spacebud412', 'spacebud351', 'spacebud745'],
+                items: ['spacebud351', 'spacebud745', 'spacebud502'],
             }
         }
     },
