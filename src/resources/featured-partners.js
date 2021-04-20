@@ -12,15 +12,11 @@ module.exports = {
         artefacts: {
             all: {
                 name: 'All',
-                items: ['artefact_1', 'artefact_2', 'artefact_3', 'artefact_4'],
+                items: ['atoms', 'daVinci', 'trigonometry', 'wolfram'],
             },
             active: {
                 name: 'Active',
-                items: ['artefact_3', 'artefact_4'],
-            },
-            new: {
-                name: 'New',
-                items: ['artefact_2', 'artefact_4'],
+                items: ['atoms'],
             }
         }
     },
