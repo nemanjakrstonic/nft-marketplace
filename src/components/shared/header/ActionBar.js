@@ -15,7 +15,7 @@ class ActionBar extends React.Component {
                         </div>
                     </form>
                 </div>
-                <Link to="#" className="btn btn--gradient ml-4">Login</Link>
+                {/*<Link to="#" className="btn btn--gradient ml-4">Login</Link>*/}
                 <Link to="#" className="btn btn--white ml-3">Connect wallet</Link>
             </div>
         )
