@@ -4,6 +4,9 @@ body {
     font-weight: 400;
     font-size: 14px;
 }
+* {
+    -webkit-overflow-scrolling: touch;
+}
 h1 {
     font-size: 40px;
 }
@@ -88,7 +91,7 @@ h4.smaller {
 .footer-link:hover:after,
 .menu-items li a:hover:after {
     opacity: 1;
-    visibility: 1;
+    visibility: visible;
 }
 .action-bar {
     margin-left: auto;
@@ -101,12 +104,12 @@ input {
     border-radius: 32px;
     color: #4E4B66;
     outline: none;
-    border: none;
     padding: 14px 20px 14px 20px;
     line-height: 20px;
-    width: 600px;
     transition: all 200ms;
     border: 1px solid transparent;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
 }
 input:focus {
     background: #FCFCFC;
@@ -122,6 +125,10 @@ input:-ms-input-placeholder {
 }
 input::-ms-input-placeholder {
     color: #A0A3BD;
+}
+textarea {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
 }
 .input-image {
     position: relative;
@@ -517,11 +524,12 @@ body .popular-category {
     margin-top: 4px;
 }
 .tabs button.active {
-    background-image: -webkit-gradient( linear, left top, right bottom, color-stop(0, #FE7B59), color-stop(1, #FE497A) );
-    background-image: gradient( linear, left top, right bottom, color-stop(0, #FE7B59), color-stop(1, #FE497A) );
-    color:transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
+    color: #FE7B59;
+    /*background-image: -webkit-gradient( linear, left top, right bottom, color-stop(0, #FE7B59), color-stop(1, #FE497A) );*/
+    /*background-image: gradient( linear, left top, right bottom, color-stop(0, #FE7B59), color-stop(1, #FE497A) );*/
+    /*color:transparent;*/
+    /*-webkit-background-clip: text;*/
+    /*background-clip: text;*/
 }
 .tabs button.active:after {
     background: linear-gradient(to left top, #FE7B59, #FE497A);
