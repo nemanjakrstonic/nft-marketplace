@@ -305,6 +305,7 @@ body .react-multi-carousel-track {
     border-radius: 40px;
     outline: none;
     margin-left: 10px;
+    background: transparent;
 }
 .carousel-button-group button:not(.disable) {
     background: #F9D9D4;
