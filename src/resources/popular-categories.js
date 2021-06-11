@@ -1,38 +1,122 @@
 module.exports = {
-    collectibles: {
-        name: 'Collectibles',
-        main_image: 'img/categories/cat1-min.png',
-        description: 'Collection description goes here.',
-        count: 28,
-        small_images: [
-            'img/categories/cat4-min.png',
-            'img/categories/cat7-min.png',
-            'img/categories/cat10-min.png',
-        ],
-        artefacts: ['artefact_1', 'artefact_2', 'artefact_3', 'artefact_4', 'artefact_5', 'artefact_6', 'artefact_7', 'artefact_8']
+    wm11114: {
+        id: 1,
+        image: '/res-img/item1.png',
+        category: 'Collectibles',
+        name: 'Digital art piece',
+        current_bid: 2345,
+        highest_bid: 0.005,
+        time: 63019,
+        owner: 'Wolfram'
     },
-    gaming: {
-        name: 'Gaming',
-        main_image: 'img/categories/cat2-min.png',
-        description: 'Collection description goes here.',
-        count: 28,
-        small_images: [
-            'img/categories/cat5-min.png',
-            'img/categories/cat8-min.png',
-            'img/categories/cat11-min.png',
-        ],
-        artefacts: ['artefact_1', 'artefact_2', 'artefact_3', 'artefact_4', 'artefact_5']
+    wm11113: {
+        id: 2,
+        image: '/res-img/item2.png',
+        category: 'Collectibles',
+        name: 'Digital art piece',
+        current_bid: 2345,
+        highest_bid: 0.005,
+        time: 63019,
+        owner: 'Wolfram'
     },
-    music: {
-        name: 'Music',
-        main_image: 'img/categories/cat3-min.png',
-        description: 'Collection description goes here.',
-        count: 28,
-        small_images: [
-            'img/categories/cat6-min.png',
-            'img/categories/cat9-min.png',
-            'img/categories/cat12-min.png',
-        ],
-        artefacts: ['artefact_1', 'artefact_2', 'artefact_3', 'artefact_4']
+    wm11116: {
+        id: 3,
+        image: '/res-img/item3.png',
+        category: 'Collectibles',
+        name: 'Digital art piece',
+        current_bid: 2345,
+        highest_bid: 0.005,
+        time: 63019,
+        owner: 'Wolfram'
     },
+    wm1157: {
+        id: 4,
+        image: '/res-img/item4.png',
+        category: 'Collectibles',
+        name: 'Digital art piece',
+        current_bid: 2345,
+        highest_bid: 0.005,
+        time: 63019,
+        owner: 'Wolfram'
+    },
+    wm11112: {
+        id: 5,
+        image: '/res-img/item5.png',
+        category: 'Collectibles',
+        name: 'Digital art piece',
+        current_bid: 2345,
+        highest_bid: 0.005,
+        time: 16000,
+        owner: 'Wolfram'
+    },
+    wm11111: {
+        id: 6,
+        image: '/res-img/item6.png',
+        category: 'Collectibles',
+        name: 'Digital art piece',
+        current_bid: 2345,
+        highest_bid: 0.005,
+        time: 63019,
+        owner: 'Wolfram'
+    },
+    wm111131: {
+        id: 7,
+        image: '/res-img/item7.png',
+        category: 'Collectibles',
+        name: 'Digital art piece',
+        current_bid: 2345,
+        highest_bid: 0.005,
+        time: 63019,
+        owner: 'Wolfram'
+    },
+    wm11513: {
+        id: 8,
+        image: '/res-img/item8.png',
+        category: 'Collectibles',
+        name: 'Digital art piece',
+        current_bid: 2345,
+        highest_bid: 0.005,
+        time: 63019,
+        owner: 'Wolfram'
+    },
+    wm115135: {
+        id: 9,
+        image: '/res-img/item9.png',
+        category: 'Collectibles',
+        name: 'Digital art piece',
+        current_bid: 2345,
+        highest_bid: 0.005,
+        time: 63019,
+        owner: 'Wolfram'
+    },
+    wm115136: {
+        id: 10,
+        image: '/res-img/item10.png',
+        category: 'Collectibles',
+        name: 'Digital art piece',
+        current_bid: 2345,
+        highest_bid: 0.005,
+        time: 63019,
+        owner: 'Wolfram'
+    },
+    wm115137: {
+        id: 11,
+        image: '/res-img/item11.png',
+        category: 'Collectibles',
+        name: 'Digital art piece',
+        current_bid: 2345,
+        highest_bid: 0.005,
+        time: 63019,
+        owner: 'Wolfram'
+    },
+    wm115132: {
+        id: 12,
+        image: '/res-img/item12.png',
+        category: 'Collectibles',
+        name: 'Digital art piece',
+        current_bid: 2345,
+        highest_bid: 0.005,
+        time: 63019,
+        owner: 'Wolfram'
+    }
 };

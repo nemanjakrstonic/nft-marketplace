@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from "../shared/header/Navbar";
 import Footer from "../shared/footer/Footer";
 import partners from "../../resources/featured-partners";
-import Tabs from "./Tabs";
+import Tabs from "./parts/Tabs";
 import RelatedItem from "../shared/RelatedItem";
 
 export default class PartnerProfile extends React.Component {

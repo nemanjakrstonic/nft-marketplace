@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "NFT Marketplace",
+  "name": "Live auction hosted by Wolfram",
   "icons": [
     {
       "src": "favicon.ico",

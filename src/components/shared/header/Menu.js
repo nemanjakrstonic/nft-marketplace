@@ -1,13 +1,16 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import { disableClick } from "../../helpers/functions";
 
 class Menu extends React.Component {
     
     render() {
         return (
-            <ul className="menu-items">
-                <li><Link to="#">Discover</Link></li>
-                <li><Link to="#">How it works</Link></li>
+            <ul className="navbar-nav menu-items">
+                <li className="nav-item"><NavLink activeClassName="active" to="/" exact={true}>Home</NavLink></li>
+                <li className="nav-item"><NavLink activeClassName="active" to="/category">Buy</NavLink></li>
+                <li className="nav-item"><NavLink activeClassName="active" to="/faq">Help & FAQs</NavLink></li>
+                <li className="nav-item"><NavLink activeClassName="active" to="/about" onClick={(event) => disableClick(event)}>About </NavLink></li>
             </ul>
         )
     }
