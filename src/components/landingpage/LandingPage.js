@@ -7,7 +7,6 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import SliderItem from "./parts/SliderItem";
 import Timer from "./parts/Timer";
-import { disableClick } from "../helpers/functions";
 
 // Resources
 import illustration1 from "../../assets/img/illustration1.svg";
@@ -163,7 +162,6 @@ class LandingPage extends React.Component {
                                 renderDotsOutside={<CustomDot />}
                                 // customButtonGroup={<ButtonGroup />}
                             >
-                                
                                 {
                                     Object
                                         .keys(sliderItems)
@@ -178,7 +176,7 @@ class LandingPage extends React.Component {
                     <div className="row">
                         <div className="col-12 text-center">
                             <h2 className="font-weight-normal mb-5 pb-5">Experience the auction</h2>
-                            <Link to="/sign-up" className="btn btn--big btn--gradient">Register now</Link>
+                            <Link to="/login" className="btn btn--big btn--gradient">Register now</Link>
                         </div>
                     </div>
                 </div>

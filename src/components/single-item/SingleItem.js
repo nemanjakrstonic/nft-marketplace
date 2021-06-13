@@ -8,7 +8,7 @@ import YourCurrentBid from "./parts/YourCurrentBid";
 import {Link} from "react-router-dom";
 import ConfirmBid from "./parts/ConfirmBid";
 import NotEnoughADA from "./parts/NotEnoughADA";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 // Resources
 import download from "../../assets/img/download-orange.svg";

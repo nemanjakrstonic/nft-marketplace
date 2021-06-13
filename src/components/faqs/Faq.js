@@ -2,7 +2,6 @@ import React from 'react';
 import Navbar from "../shared/header/Navbar";
 import Footer from "../shared/footer/Footer";
 import Sections from "./parts/Sections";
-import Tabs from "../account/parts/Tabs";
 import SlideDown from "react-slidedown";
 import 'react-slidedown/lib/slidedown.css'
 import {Link} from "react-router-dom";

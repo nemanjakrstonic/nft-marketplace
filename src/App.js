@@ -1,6 +1,6 @@
-import { Router, Switch, Route, Redirect } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import history from './settings/history';
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import LandingPageContainer from "./containers/LandingPageContainer";
 import ScrollToTop from "./components/helpers/ScrollToTop";
 import Error404 from "./components/Error404";
@@ -12,85 +12,44 @@ import AccountBalanceContainer from "./containers/account/AccountBalanceContaine
 import AccountMyNFTsContainer from "./containers/account/AccountMyNFTsContainer";
 import AccountLoginContainer from "./containers/account/AccountLoginContainer";
 import AccountSignUpContainer from "./containers/account/AccountSignUpContainer";
-
-import { isLoggedIn } from './components/helpers/IsLoggedin'
-import { fakeAuth } from './components/helpers/FakeAuth'
-import AccountWithdrawADAContainer from "./containers/account/AccountWithdrawADAContainer";
 import FaqContainer from "./containers/FaqContainer";
+import AccountWithdrawADAContainer from "./containers/account/AccountWithdrawADAContainer";
 
-// const PrivateRoute = ({
-//       component: Component,
-//       ...rest
-//   }) => (
-//     <Route
-//         {...rest}
-//         render={props =>
-//             fakeAuth.isAuthenticated === 'true' ? (
-//                 <Component {...props} />
-//             ) : (
-//                 <Redirect to="/login" />
-//             )
-//         }
-//     />
-// );
-const PrivateRoute = ({
-        comp: Component, // use comp prop
-        ...rest
-    }) => (
-    <Route
-        {...rest}
-        render={props =>
-            fakeAuth.isAuthenticated === true ? (
-                <Component {...props} />
-            ) : (
-                <Redirect to="/login" />
-            )
-        }
-    />
-);
-// checkLoginStatus() {
-//     const tokenString = localStorage.getItem('loggedin');
-//     console.log('1'+tokenString);
-//     return tokenString === 'true';
-// }
-// componentDidMount() {
-//     this.setState({
-//         loggedInStatus: this.checkLoginStatus()
-//     })
-// }
+import { UserContext } from './authentication/context/UserContext';
+import { checkUser } from './authentication/service/magic';
+import PrivateRoute from './authentication/service/PrivateRoute';
 
-
-class App extends Component {
+const App = () => {
+    const [user, setUser] = useState({ isLoggedIn: null, email: '' });
+    const value = { user, setUser };
     
-    componentDidMount() {
-        if (isLoggedIn()) {
-            // console.log('11111111a', fakeAuth.isAuthenticated);
-            // fakeAuth.authenticate();
-        }
-    }
+    const [loading, setLoading] = useState();
     
-    constructor() {
-        super();
-        this.state = {
-            loggedInStatus: false
-        }
-    }
-    // checkLoginStatus() {
-    //     const tokenString = localStorage.getItem('loggedin');
-    //     console.log('1'+tokenString);
-    //     return tokenString === 'true';
-    // }
-    // componentDidMount() {
-    //     this.setState({
-    //         loggedInStatus: this.checkLoginStatus()
-    //     })
-    // }
-    
-    render() {
-        
+    useEffect(() => {
+        const validateUser = async () => {
+            setLoading(true);
+            try {
+                await checkUser(setUser);
+                // console.log('app.js', user);
+                setLoading(false);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        validateUser().then(r => console.log(r));
+    }, [user.isLoggedIn]);
+    if (loading) {
         return (
+            <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+                <h1>Loading....</h1>
+            </div>
+        );
+    }
+    return (
+        <UserContext.Provider value={value}>
             <div className="App">
                 <Router history={history}>
+                    {/*{user.isLoggedIn && <Redirect to={{ pathname: '/' }} />}*/}
                     <ScrollToTop />
                     <Switch>
                         {/*<Route path="/" render={({ match }) => <LandingPageContainer match={match} />}/>*/}
@@ -101,10 +60,10 @@ class App extends Component {
                         {/*<Route path="/category" exact component={CategoryContainer}/>*/}
                         <Route path="/category/:page?" exact component={CategoryContainer}/>
                         <Route path="/nft/:artefactId" exact component={SingleItemContainer}/>
-                        <PrivateRoute path="/account/bids" exact comp={AccountBidsContainer}/>
-                        <PrivateRoute path="/account/balance" exact comp={AccountBalanceContainer} />
-                        <PrivateRoute path="/account/my-nfts/:page?" exact comp={AccountMyNFTsContainer}/>
-                        <PrivateRoute path="/account/withdraw" exact comp={AccountWithdrawADAContainer}/>
+                        <PrivateRoute path="/account/bids" exact component={AccountBidsContainer}/>
+                        <PrivateRoute path="/account/balance" exact component={AccountBalanceContainer} />
+                        <PrivateRoute path="/account/my-nfts/:page?" exact component={AccountMyNFTsContainer}/>
+                        <PrivateRoute path="/account/withdraw" exact component={AccountWithdrawADAContainer}/>
                         <Route path="/login" exact component={AccountLoginContainer}/>
                         <Route path="/sign-up" exact component={AccountSignUpContainer}/>
                         <Route path="/faq" exact component={FaqContainer}/>
@@ -112,7 +71,47 @@ class App extends Component {
                     </Switch>
                 </Router>
             </div>
-        )
-    };
+        </UserContext.Provider>
+    );
 }
 export default App;
+
+// class App extends Component {
+//
+//     constructor() {
+//         super();
+//         this.state = {
+//             loggedInStatus: false
+//         }
+//     }
+//
+//     render() {
+//
+//         return (
+//             <div className="App">
+//                 <Router history={history}>
+//                     <ScrollToTop />
+//                     <Switch>
+//                         {/*<Route path="/" render={({ match }) => <LandingPageContainer match={match} />}/>*/}
+//                         {/*<Route path="/home" render={({ match }) => <LandingPageContainer match={match} />}/>*/}
+//                         {/*<Route path="/home/test" render={({ match }) => <AccountBidsContainer match={match} />}/>*/}
+//                         <Route path="/" exact component={LandingPageContainer}/>
+//                         <Route path="/partner/:partnerId" exact component={PartnerProfileContainer}/>
+//                         {/*<Route path="/category" exact component={CategoryContainer}/>*/}
+//                         <Route path="/category/:page?" exact component={CategoryContainer}/>
+//                         <Route path="/nft/:artefactId" exact component={SingleItemContainer}/>
+//                         <PrivateRoute path="/account/bids" exact comp={AccountBidsContainer}/>
+//                         <PrivateRoute path="/account/balance" exact comp={AccountBalanceContainer} />
+//                         <PrivateRoute path="/account/my-nfts/:page?" exact comp={AccountMyNFTsContainer}/>
+//                         <PrivateRoute path="/account/withdraw" exact comp={AccountWithdrawADAContainer}/>
+//                         <Route path="/login" exact component={AccountLoginContainer}/>
+//                         <Route path="/sign-up" exact component={AccountSignUpContainer}/>
+//                         <Route path="/faq" exact component={FaqContainer}/>
+//                         <Route path="" component={Error404}/>
+//                     </Switch>
+//                 </Router>
+//             </div>
+//         )
+//     };
+// }
+// export default App;
