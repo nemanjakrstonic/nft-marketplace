@@ -1,11 +1,39 @@
 import React from 'react';
 import Navbar from "../shared/header/Navbar";
 import Footer from "../shared/footer/Footer";
-import bids from "../../resources/bids";
+// import bids from "../../resources/bids";
 import Bid from "./parts/Bid";
 import Navigation from "./parts/Navigation";
+import {bids} from "../../services/list";
 
 export default class AccountBids extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            items: []
+        };
+    }
+    
+    
+    componentDidMount() {
+        
+        bids().then(
+            (result) => {
+                this.setState({
+                    isLoaded: true,
+                    items: result
+                });
+            },
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
+            }
+        );
+    }
     
     render() {
         return (
@@ -29,7 +57,7 @@ export default class AccountBids extends React.Component {
                                         </thead>
                                         <tbody>
 
-                                            {bids.map(function(currentValue, index, arr){
+                                            {this.state.items.map(function(currentValue, index, arr){
                                                 return (
                                                     <Bid
                                                         key={index}

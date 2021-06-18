@@ -5,7 +5,7 @@ export default class Tabs extends React.Component {
     
     render() {
     
-        const { activeTab, tabs } = this.props;
+        const { activeTab, tabs, types } = this.props;
         
         return (
             <div className="col-12 account-navigation">
@@ -14,8 +14,8 @@ export default class Tabs extends React.Component {
                 <div className="account-menu">
                     {
                         Object.keys(tabs).map((key) =>
-                            <div key={key} className={`account-menu-item ${activeTab === key.toString() ? 'active' :''}`}>
-                                <Link to="#" data-tab={key} onClick={(e) => this.props.changeTab(e)}>{tabs[key]}</Link>
+                            <div key={key} className={`account-menu-item ${activeTab === tabs[key].toString() ? 'active' :''}`}>
+                                <Link to="#" data-tab={tabs[key]} data-type={types[key]} onClick={(e) => this.props.changeTab(e)}>{tabs[key]}</Link>
                             </div>
                         )
                     }

@@ -168,7 +168,7 @@ class SingleItem extends React.Component {
                                                     yourEnterBid={this.state.yourEnterBid}
                                                     openNotEnoughADAModal={this.openNotEnoughADAModal}
                                                 />
-                                                <p className="text-gray-medium pt-5">Not sure how to place a bid? <Link to="#" className="hover-effect-1">Visit Help</Link>.</p>
+                                                <p className="text-gray-medium pt-5">Not sure how to place a bid? <Link to="/faq" className="hover-effect-1">Visit Help</Link>.</p>
                                             </div>
                                             :
                                             ''

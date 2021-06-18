@@ -14,7 +14,7 @@ const ActionBar = () => {
     
     
     const history = useHistory();
-    console.log(isLoggedIn, 'llllllllllllllll');
+    // console.log(isLoggedIn, 'llllllllllllllll');
     
     
     
@@ -22,7 +22,7 @@ const ActionBar = () => {
         // UseForceUpdate();
         try {
             await logoutUser();
-            setUser({ isLoggedIn: null, email: '' });
+            setUser({ isLoggedIn: null, email: '', issuer: '' });
             history.replace('/');
             // setUser();
         } catch (error) {

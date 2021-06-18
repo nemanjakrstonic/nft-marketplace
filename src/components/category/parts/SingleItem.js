@@ -38,7 +38,7 @@ export default class SingleItem extends React.Component {
                                 <div className="bid-info">
                                     <span>Ends:</span>
                                     <span className="highest-bid">{ item.ends }</span>
-                                    <p className="bids-num pb-0 mb-0">{ item.bid_num } bids</p>
+                                    <p className="bids-num pb-0 mb-0">{ item.bids } bids</p>
                                 </div>
                                 :
                                 <div className="bid-info">

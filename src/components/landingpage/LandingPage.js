@@ -7,6 +7,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import SliderItem from "./parts/SliderItem";
 import Timer from "./parts/Timer";
+import { getNFTs16 } from '../../services/list';
 
 // Resources
 import illustration1 from "../../assets/img/illustration1.svg";
@@ -14,7 +15,9 @@ import illustration2 from "../../assets/img/illustration2.svg";
 import illustration3 from "../../assets/img/illustration3.svg";
 import illustration4 from "../../assets/img/illustration4.svg";
 import wlogo from "../../assets/img/wolfram-research-logo.svg";
-import sliderItems from '../../resources/slider-items';
+// import sliderItems from '../../resources/slider-items';
+
+
 
 const TimeLineTitle = (props) => {
     const ref = useRef()
@@ -71,8 +74,41 @@ class LandingPage extends React.Component {
     constructor(props) {
         super(props)
         this.howItWorks = React.createRef()
+        this.about = React.createRef()
+        this.state = {
+            error: null,
+            isLoaded: false,
+            items: []
+        };
     }
-    executeScroll = () => this.howItWorks.current.scrollIntoView()
+    executeScrollHowItWorks = () => this.howItWorks.current.scrollIntoView()
+    executeScrollAbout = () => this.about.current.scrollIntoView()
+    
+    componentDidMount() {
+        if (this.props.location.hash === '#about') {
+            this.executeScrollAbout();
+        }
+    
+        getNFTs16().then(
+            (result) => {
+                this.setState({
+                    isLoaded: true,
+                    items: result
+                });
+            },
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
+            }
+        );
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.location.hash === '#about') {
+            this.executeScrollAbout();
+        }
+    }
     
     render() {
         return (
@@ -86,28 +122,30 @@ class LandingPage extends React.Component {
                             <h1 className="font-weight-normal pb-3 mb-4">WOLFRAM NFT AUCTION</h1>
                             <p className="pb-3 mb-4">Wolfram Research and Wolfram Blockchain Labs presents our initial collection of NFTs built on the Cardano blockchain at our “Items from the Computational Universe” Auction.<br/><br/>We invite you to join the live event on 15 June, where the “Items from the Computational Universe” will be “live minted”, selected and represented as non-fungible tokens (NFTs) on the Cardano blockchain, and will be made available on LiveMinting.com to some lucky people who have attended Wolfram Virtual Events or Cardano Virtual Events for free.</p>
                             <Link to="/sign-up" className="btn btn--gradient mr-4">Register</Link>
-                            <Link to="#" onClick={this.executeScroll} className="btn btn--white">Learn more</Link>
+                            <Link to="#" onClick={this.executeScrollHowItWorks} className="btn btn--white">Learn more</Link>
                         </div>
                         <div className="col-lg-6">
                             <div className="countdown text-center">
-                                <Timer ends="06/15/2021 00:00:00 GMT-0000" />
+                                <Timer ends="06/28/2021 00:00:00 GMT-0000" />
                                 <img src={wlogo} alt="" />
                                 <p className="pb-4 mb-2">In partnership with IOHK.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="empty-space-130"/>
-                <div className="container container--extended bck-gray bck-color-padding br-6 px-lg-5">
-                    <div className="row">
-                        <div className="col-12">
-                            <h4 className="big font-weight-normal mb-5">ABOUT US</h4>
-                            <h5 className="mb-3">Wolfram</h5>
-                            <p className="mb-5">Founded by Stephen Wolfram in 1987, Wolfram Research is one of the world’s most respected computer, web, and cloud software companies—as well as a powerhouse of scientific and technical innovation. As pioneers in computation and computational knowledge, we have pursued a long-term vision to develop the science, technology, and tools to make computation an ever-more-potent force in today’s and tomorrow’s world.</p>
-                            <h5 className="mb-3">Wolfram Blockchain Labs</h5>
-                            <p className="mb-5">Wolfram Blockchain Labs provides distributed ledger technology ecosystems with the tools necessary to assist in the development of a wide variety of smart, contract-based applications. Wolfram Blockchain Labs is the DLT-focused subsidiary of Wolfram Research, Inc., creator of Mathematica, Wolfram|Alpha and the Wolfram Language. Wolfram is the leader in developing technology and tools that inject sophisticated computational intelligence into everything.</p>
-                            <h5 className="mb-3">Cardano</h5>
-                            <p className="mb-5">Cardano is a decentralized third-generation proof-of-stake blockchain platform. It distinguishes itself from other blockchains through a commitment to peer-reviewed scientific research for its platform’s building blocks.</p>
+                <div className="empty-space-100"/>
+                <div ref={this.about} className="pt-4">
+                    <div className="container container--extended bck-gray bck-color-padding br-6 px-lg-5">
+                        <div className="row">
+                            <div className="col-12">
+                                <h4 className="big font-weight-normal mb-5">ABOUT US</h4>
+                                <h5 className="mb-3">Wolfram</h5>
+                                <p className="mb-5">Founded by Stephen Wolfram in 1987, Wolfram Research is one of the world’s most respected computer, web, and cloud software companies—as well as a powerhouse of scientific and technical innovation. As pioneers in computation and computational knowledge, we have pursued a long-term vision to develop the science, technology, and tools to make computation an ever-more-potent force in today’s and tomorrow’s world.</p>
+                                <h5 className="mb-3">Wolfram Blockchain Labs</h5>
+                                <p className="mb-5">Wolfram Blockchain Labs provides distributed ledger technology ecosystems with the tools necessary to assist in the development of a wide variety of smart, contract-based applications. Wolfram Blockchain Labs is the DLT-focused subsidiary of Wolfram Research, Inc., creator of Mathematica, Wolfram|Alpha and the Wolfram Language. Wolfram is the leader in developing technology and tools that inject sophisticated computational intelligence into everything.</p>
+                                <h5 className="mb-3">Cardano</h5>
+                                <p className="mb-5">Cardano is a decentralized third-generation proof-of-stake blockchain platform. It distinguishes itself from other blockchains through a commitment to peer-reviewed scientific research for its platform’s building blocks.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -115,7 +153,7 @@ class LandingPage extends React.Component {
                 <div ref={this.howItWorks} className="container pt-5">
                     <div className="row">
                         <div className="col-12">
-                            <h4 className="big font-weight-normal mb-5 text-center">Learn more</h4>
+                            <h4 className="big font-weight-normal mb-5 text-center">How to participate</h4>
                             <p className="max-width-px-450 mx-auto mb-5 text-center">This auction is being held by Wolfram Labs and you can participate in this event in a few easy steps:</p>
                             <div className="timeline pt-5">
                                 <div className="pt-4"/>
@@ -164,8 +202,8 @@ class LandingPage extends React.Component {
                             >
                                 {
                                     Object
-                                        .keys(sliderItems)
-                                        .map(key => <SliderItem key={key} item={sliderItems[key]} />)
+                                        .keys(this.state.items)
+                                        .map(key => <SliderItem key={key} item={this.state.items[key]} />)
                                 }
                             </Carousel>
                         </div>

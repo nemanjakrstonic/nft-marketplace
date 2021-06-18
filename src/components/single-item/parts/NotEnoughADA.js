@@ -3,14 +3,27 @@ import { Modal } from 'reactstrap';
 
 // Resources
 import close from "../../../assets/img/x.svg";
-import link from "../../../assets/img/link-blue.svg";
+import link from "../../../assets/img/copy.svg";
+import linkHover from "../../../assets/img/copy-hover.svg";
 import {Link} from "react-router-dom";
 
 
 export default class NotEnoughADA extends React.Component {
     
+    constructor() {
+        super();
+        this.state = {
+            showAddress: false,
+        };
+    }
+    
     closeModal = () => {
         this.props.closeNotEnoughADAModal();
+    };
+    generateAddress = () => {
+        this.setState({
+            showAddress: true
+        })
     };
     
     render() {
@@ -28,10 +41,20 @@ export default class NotEnoughADA extends React.Component {
                     <div className="modal-body">
                         <p>To continue bidding, you need to deposit more ADA into your bidding account. </p>
                         <p className="mb-5">If you have troubles depositing, visit <Link to="#" className="hover-effect-1">Help section</Link>.</p>
-                        <p>To deposit, send ADA to this address. </p>
-                        <p className="confirm-address pt-1 pb-5 mb-2">
-                            <span>0xC6b7E71D81CD06FBc8506bC6b7E71D81CD06FBc8506b</span><img src={ link } alt="Copy" />
-                        </p>
+                        <p className="pt-4 mb-3">To deposit, send ADA to this address. </p>
+                        <button type="button" onClick={this.generateAddress} className="btn btn--gradient mr-3 mb-4">Generate address</button>
+                        {
+                            this.state.showAddress ?
+                                <p className="confirm-address pb-4 mb-2">
+                                    <span>0xC6b7E71D81CD06FBc8506bC6b7E71D81CD06FBc8506b</span>
+                                    <button type="button" className="change-hover-img btn-copy" onClick={() => {navigator.clipboard.writeText('0xC6b7E71D81CD06FBc8506bC6b7E71D81CD06FBc8506b').then()}}>
+                                        <img src={ link } alt="Copy" />
+                                        <img src={ linkHover } alt="Copy" />
+                                    </button>
+                                </p>
+                                :
+                                ''
+                        }
                         <p className="font-size-14 font-weight-medium text-black"><i>*Note: it may take up to 10 minutes for the blockchain to confirm this transfer and credit your bidding account.</i></p>
                     </div>
                     <div className="modal-footer pt-4">

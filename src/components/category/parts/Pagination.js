@@ -9,7 +9,7 @@ export default class Pagination extends React.Component {
     }
     
     render() {
-        const { currentPage, totalItemsNum } = this.props;
+        const { currentPage, totalPagesNum } = this.props;
         
         return (
             <div className="pagination-wrapper pt-5">
@@ -17,11 +17,11 @@ export default class Pagination extends React.Component {
                     <img src={ arrowGray } alt="" />
                 </button>
                 {
-                    Array.apply(null, { length: totalItemsNum }).map((e, i=1) => {
+                    Array.apply(null, { length: totalPagesNum }).map((e, i=1) => {
                         if (currentPage-1 === i) {
                             return <button key={i} className="btn page-number active" onClick={() => this.changePage(i+1)}>{i+1}</button>
-                        // } else if (totalItemsNum > 5 && currentPage - 4 < i && currentPage + 2 > i) {
-                        } else if (Math.abs(currentPage - i - 1 ) < 3 + Math.max(0,3-currentPage) + Math.max(0,currentPage-totalItemsNum+2)) {
+                        // } else if (totalPagesNum > 5 && currentPage - 4 < i && currentPage + 2 > i) {
+                        } else if (Math.abs(currentPage - i - 1 ) < 3 + Math.max(0,3-currentPage) + Math.max(0,currentPage-totalPagesNum+2)) {
                             // console.log(i+'a')
                             return <button key={i} className="btn page-number" onClick={() => this.changePage(i+1)}>{i+1}</button>
                         } else {
@@ -29,7 +29,7 @@ export default class Pagination extends React.Component {
                         }
                     })
                 }
-                <button type="button" className="btn next" disabled={currentPage.toString() === totalItemsNum.toString()} onClick={this.props.nextPage}>
+                <button type="button" className="btn next" disabled={currentPage.toString() === totalPagesNum.toString()} onClick={this.props.nextPage}>
                     <img src={ arrowGray } alt="" />
                 </button>
             </div>

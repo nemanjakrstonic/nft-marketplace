@@ -23,22 +23,22 @@ const App = () => {
     const [user, setUser] = useState({ isLoggedIn: null, email: '' });
     const value = { user, setUser };
     
-    const [loading, setLoading] = useState();
+    // const [loading, setLoading] = useState();
     
     useEffect(() => {
         const validateUser = async () => {
-            setLoading(true);
+            // setLoading(true);
             try {
                 await checkUser(setUser);
-                // console.log('app.js', user);
-                setLoading(false);
+                console.log('app.js', user);
+                // setLoading(false);
             } catch (error) {
                 console.error(error);
             }
         };
-        validateUser().then(r => console.log(r));
-    }, [user.isLoggedIn]);
-    if (loading) {
+        validateUser().then();
+    },[user, user.isLoggedIn]);
+    if (user.isLoggedIn === null) {
         return (
             <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
                 <h1>Loading....</h1>
@@ -59,7 +59,7 @@ const App = () => {
                         <Route path="/partner/:partnerId" exact component={PartnerProfileContainer}/>
                         {/*<Route path="/category" exact component={CategoryContainer}/>*/}
                         <Route path="/category/:page?" exact component={CategoryContainer}/>
-                        <Route path="/nft/:artefactId" exact component={SingleItemContainer}/>
+                        <PrivateRoute path="/nft/:artefactId" exact component={SingleItemContainer}/>
                         <PrivateRoute path="/account/bids" exact component={AccountBidsContainer}/>
                         <PrivateRoute path="/account/balance" exact component={AccountBalanceContainer} />
                         <PrivateRoute path="/account/my-nfts/:page?" exact component={AccountMyNFTsContainer}/>

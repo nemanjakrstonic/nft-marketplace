@@ -18,7 +18,7 @@ export default class AccountSignUp extends React.Component {
                                     <p className="text-gray-medium mb-0">Already have an account?<br /><Link to="/login" className="hover-effect-1">Log in</Link>.</p>
                                 </div>
                                 <div className="pb-5">
-                                    <p className="text-gray-medium mb-0">Not sure how to obtain ADA?<br /><Link to="#" className="hover-effect-1">Visit Help</Link>.</p>
+                                    <p className="text-gray-medium mb-0">Not sure how to obtain ADA?<br /><Link to="/faq" className="hover-effect-1">Visit Help</Link>.</p>
                                 </div>
                             </div>
                             <div className="col col-custom-1 py-5 pl-lg-5 my-lg-5 w-100">

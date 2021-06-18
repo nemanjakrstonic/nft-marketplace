@@ -3,7 +3,8 @@ import Navbar from "../shared/header/Navbar";
 import Footer from "../shared/footer/Footer";
 import Tabs from "./parts/Tabs";
 // import Carousel from "react-multi-carousel";
-import nfts from "../../resources/my-nfts";
+// import nfts from "../../resources/my-nfts";
+import {myNFTs} from "../../services/list";
 
 // Resources
 // import arrowGray from "../../assets/img/strelicaLevoSiva.svg";
@@ -12,51 +13,10 @@ import BlockItem from "./parts/BlockItem";
 import PreviewOwnedItem from "./parts/PreviewOwnedItem";
 import Pagination from "../category/parts/Pagination";
 
-// const responsive = {
-//     superLargeDesktop: {
-//         breakpoint: { max: 100000, min: 1360 },
-//         items: 3,
-//         slidesToSlide: 3
-//     },
-//     desktop: {
-//         breakpoint: { max: 1360, min: 992 },
-//         items: 3,
-//         slidesToSlide: 3
-//     },
-//     tablet: {
-//         breakpoint: { max: 991, min: 464 },
-//         items: 2,
-//         slidesToSlide: 2
-//     },
-//     mobile: {
-//         breakpoint: { max: 464, min: 0 },
-//         items: 2,
-//         slidesToSlide: 2
-//     }
-// };
-//
-// const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
-//     const { carouselState: { currentSlide, totalItems, slidesToShow } } = rest;
-//     const grayBtn = <img src={arrowGray} alt="" />;
-//     const coloredBtn = <img src={arrowRed} alt="" />;
-//     return (
-//         <div className="carousel-button-group">
-//             <button aria-label="Go to previous slide" className={currentSlide === 0 ? 'disable' : ''} onClick={() => previous()} >
-//                 { grayBtn }
-//                 { coloredBtn }
-//             </button>
-//             <button aria-label="Go to next slide" className={currentSlide === totalItems - slidesToShow ? 'disable' : ''} onClick={() => next()} >
-//                 { grayBtn }
-//                 { coloredBtn }
-//             </button>
-//             {/*<button aria-label="Go to exact slide" onClick={() => goToSlide(currentSlide + 1)}> Go to any slide </button>*/}
-//         </div>
-//     );
-// }
-
 export default class AccountMyNFTs extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.setNFTsScope = this.setNFTsScope.bind(this);
         this.setCurrentPage = this.setCurrentPage.bind(this);
         this.prevPage = this.prevPage.bind(this);
         this.nextPage = this.nextPage.bind(this);
@@ -66,7 +26,11 @@ export default class AccountMyNFTs extends React.Component {
         this.state = {
             currentPage: 1,
             itemsPerPage: 6,
-            activeTab: '0',
+            activeTab: 'All',
+            error: null,
+            isLoaded: false,
+            items: [],
+            nftsScope: [],
             previewMode: false,
             previewItem: {
                 name: '',
@@ -78,10 +42,40 @@ export default class AccountMyNFTs extends React.Component {
     
     componentDidMount() {
         const param = this.props.match.params.page;
-        const page = param?param:1
+        let page = 1;
+        if (this.isPositiveInteger(param)) {
+            page = param;
+        } else if (param === undefined) {
+            page = 1;
+        } else {
+            page = 1;
+            this.props.history.push({
+                pathname: '/account/my-nfts'
+            });
+        }
         this.setState({
             currentPage: page
-        })
+        });
+        
+        myNFTs().then(
+            (result) => {
+                // console.log(result, 11);
+                this.setState({
+                    isLoaded: true,
+                    items: result,
+                    nftsScope: result
+                });
+            },
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
+            }
+        );
+    }
+    isPositiveInteger(n) {
+        return n >>> 0 === parseFloat(n);
     }
     prevPage() {
         let page = parseInt(this.state.currentPage) - 1
@@ -108,18 +102,25 @@ export default class AccountMyNFTs extends React.Component {
         this.setState({
             currentPage: page
         }, () => {
-            this.props.history.push({
-                pathname: '/account/my-nfts/'+page
-            })
+            if (page === 1) {
+                this.props.history.push({
+                    pathname: '/account/my-nfts'
+                })
+            } else {
+                this.props.history.push({
+                    pathname: '/account/my-nfts/'+page
+                })
+            }
         })
     }
-    
     changeTab(e) {
         const newTab = e.target.getAttribute("data-tab");
+        this.setNFTsScope(e.target.getAttribute("data-type"));
         this.setState({
             activeTab : newTab,
             previewMode: false,
         });
+        this.setCurrentPage(1);
     }
     openPreviewItemMode(name, date, image) {
         this.setState({
@@ -145,22 +146,45 @@ export default class AccountMyNFTs extends React.Component {
         });
     }
     
-    static getDerivedStateFromProps(props, state) {
-        if (props.history.action === 'POP') {
-            // return {
-            //     previewMode: false
-            // };
-            console.log(props);
+    setNFTsScope(type) {
+        let result;
+        if (type === 'all') {
+            result = this.state.items;
+        } else {
+            let obj = Object.keys(this.state.items)
+                .reduce((o, key) => {
+                    this.state.items[key]['type'] === type && (o[key] = this.state.items[key]);
+                    return o;
+                }, {});
+            result = Object.keys(obj).map((k) => obj[k])
         }
-        return null;
+        this.setState({
+            nftsScope: result
+        })
     }
+    
+    // static getDerivedStateFromProps(props, state) {
+    //     if (props.history.action === 'POP') {
+    //         // return {
+    //         //     previewMode: false
+    //         // };
+    //         // console.log(props);
+    //     }
+    //     return null;
+    // }
     
     
     render() {
     
         const indexOfLastItem = this.state.currentPage * this.state.itemsPerPage;
         const indexOfFirstItem = indexOfLastItem - this.state.itemsPerPage;
-        const currentItems = nfts.slice(indexOfFirstItem, indexOfLastItem);
+        let currentItems = [];
+        if (this.state.nftsScope !== null) {
+            currentItems = this.state.nftsScope.slice(indexOfFirstItem, indexOfLastItem);
+        } else {
+            currentItems = [];
+        }
+        // const currentItems = this.state.items.slice(indexOfFirstItem, indexOfLastItem);
     
         return (
             <div>
@@ -181,7 +205,12 @@ export default class AccountMyNFTs extends React.Component {
                                 </div>
                                 :
                                 <div className="row flex-lg-row account-bids">
-                                    <Tabs changeTab={this.changeTab} activeTab={ this.state.activeTab } tabs={['All', 'My bids', 'Owned by me']} />
+                                    <Tabs
+                                        changeTab={this.changeTab}
+                                        activeTab={ this.state.activeTab }
+                                        tabs={['All', 'My bids', 'Owned by me']}
+                                        types={['all', 'bidded', 'owned']}
+                                    />
                                     <div className="col col-custom-1 py-5 pl-lg-5 my-lg-5 w-100">
                                         <div className="position-relative">
                                             <div className="row-no-wrap position-relative">
@@ -224,7 +253,7 @@ export default class AccountMyNFTs extends React.Component {
                                             setCurrentPage={this.setCurrentPage}
                                             prevPage={this.prevPage}
                                             nextPage={this.nextPage}
-                                            totalItemsNum={Math.ceil(nfts.length / this.state.itemsPerPage)}
+                                            totalPagesNum={Math.ceil(this.state.nftsScope !== null ? this.state.nftsScope.length / this.state.itemsPerPage : 0)}
                                         />
                                     </div>
                                 </div>

@@ -1390,6 +1390,7 @@ table tr:last-child td:last-child {
     text-align: center;
 }
 .label-green,
+.all-bids .won .status label,
 .all-bids .highest .status label {
     /*background: #F0F4EA;*/
     color: #609129;
@@ -1412,6 +1413,7 @@ table tr:last-child td:last-child {
     font-size: 14px;
     line-height: 13px;
 }
+.all-bids .won .amount,
 .all-bids .highest .amount {
     color: #609129;
 }
@@ -1627,6 +1629,9 @@ table tr:last-child td:last-child {
     border-radius: 40px;
     cursor: pointer;
     flex-shrink: 0;
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 .btn-copy:hover {
     background: #FFCABD;

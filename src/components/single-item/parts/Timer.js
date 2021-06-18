@@ -51,6 +51,9 @@ export default class Timer extends React.Component {
             this.timer = setInterval(this.countDown, 1000);
         }
     }
+    componentWillUnmount() {
+        clearInterval(this.timer);
+    }
     
     countDown() {
         let seconds = this.state.seconds - 1;

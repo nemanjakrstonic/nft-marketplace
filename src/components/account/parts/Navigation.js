@@ -14,7 +14,7 @@ export default class Navigation extends React.Component {
                 <div className="account-menu">
                     <div className={ "account-menu-item " + ( active === 'active bids' ? 'active' : '' )}><Link to="/account/bids">Active bids</Link></div>
                     <div className={ "account-menu-item " + ( active === 'balance' ? 'active' : '' )}><Link to="/account/balance">Balance</Link></div>
-                    <div className={ "account-menu-item " + ( active === 'withdraw' ? 'active' : '' )}><Link to="/account/withdraw">Witdraw</Link></div>
+                    <div className={ "account-menu-item " + ( active === 'withdraw' ? 'active' : '' )}><Link to="/account/withdraw">Withdraw</Link></div>
                 </div>
             </div>
         )
