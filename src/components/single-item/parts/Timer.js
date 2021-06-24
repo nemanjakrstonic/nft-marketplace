@@ -4,70 +4,67 @@ export default class Timer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            time: {},
-            seconds: 0,
-            initialTime: 0
+            time: {
+                "d": 0,
+                "h": 0,
+                "m": 0,
+                "s": 0,
+            },
         };
         this.timer = 0;
-        this.startTimer = this.startTimer.bind(this);
         this.countDown = this.countDown.bind(this);
+        this.speed = 0;
+        this.counter = 0;
+        this.timeNow = new Date().getTime();
+        this.timeRemain = new Date(this.props.ends).getTime() - this.timeNow;
     }
     
     secondsToTime(secs){
-        let hours = Math.floor(secs / (60 * 60));
+        let days = Math.floor(secs / (60 * 60 * 24));
+        
+        let divisor_for_hours = secs % (60 * 60 * 24);
+        let hours = Math.floor(divisor_for_hours / (60 * 60));
         
         let divisor_for_minutes = secs % (60 * 60);
         let minutes = Math.floor(divisor_for_minutes / 60);
-        
-        let divisor_for_seconds = divisor_for_minutes % 60;
-        let seconds = Math.ceil(divisor_for_seconds);
-
+        let seconds = Math.floor(secs % 60);
+        // console.log('days' + days +  'hours' + hours +  'minutes' + minutes +  'seconds' + seconds);
         return {
+            "d": days,
             "h": hours,
             "m": minutes,
-            "s": seconds
+            "s": seconds,
         };
-    }
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.time !== prevProps.time) {
-            this.timeArrived(this.props.time);
-        }
-    }
-    componentDidMount() {
-        this.timeArrived(this.props.time);
-    }
-    timeArrived() {
-        this.setState({
-            seconds: this.props.time
-        }, () => {
-            let timeLeftVar = this.secondsToTime(this.state.seconds);
-            this.setState({ time: timeLeftVar });
-            this.startTimer();
-        });
-    }
-    
-    startTimer() {
-        if (this.timer === 0 && this.state.seconds > 0) {
-            this.timer = setInterval(this.countDown, 1000);
-        }
     }
     componentWillUnmount() {
         clearInterval(this.timer);
     }
     
-    countDown() {
-        let seconds = this.state.seconds - 1;
-        this.setState({
-            time: this.secondsToTime(seconds),
-            seconds: seconds,
-        });
-        if (seconds === 0) {
-            clearInterval(this.timer);
+    componentDidMount() {
+        this.speed = 1000;
+        this.counter = 1;
+        this.timeNow = new Date().getTime();
+        
+        if (this.timer === 0) {
+            this.timer = setTimeout(this.countDown, this.speed);
         }
     }
+    countDown() {
+        let calculated = (this.counter * this.speed);
+        let real = (new Date().getTime() - this.timeNow);
+        this.setState({
+            time: this.secondsToTime(( this.timeRemain - calculated ) / 1000 )
+        });
+        this.counter++;
+        let diff = (real - calculated);
+        if (diff > 400) {
+            this.counter += Math.floor(diff / this.speed);
+        }
+        this.timer = setTimeout(this.countDown, this.speed - diff);
+    }
+    
     render() {
         const { available } = this.props;
-        // console.log(available);
         return (
             <div className={"timer " + (available ? 'upcoming' : '')}>
                 <p className="time-label">
@@ -78,7 +75,7 @@ export default class Timer extends React.Component {
                     <p className="unit">hrs</p>
                 </div>
                 <div className="ml-3">
-                    <div className="value">{this.state.time.m}</div>
+                    <div className="value">{this.state.time.h}</div>
                     <p className="unit">min</p>
                 </div>
                 <div className="ml-3">

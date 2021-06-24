@@ -18,9 +18,10 @@ import AccountWithdrawADAContainer from "./containers/account/AccountWithdrawADA
 import { UserContext } from './authentication/context/UserContext';
 import { checkUser } from './authentication/service/magic';
 import PrivateRoute from './authentication/service/PrivateRoute';
+import SocketIO from "./SocketIO";
 
 const App = () => {
-    const [user, setUser] = useState({ isLoggedIn: null, email: '' });
+    const [user, setUser] = useState({ isLoggedIn: null, email: '', issuer: '' });
     const value = { user, setUser };
     
     // const [loading, setLoading] = useState();
@@ -30,14 +31,14 @@ const App = () => {
             // setLoading(true);
             try {
                 await checkUser(setUser);
-                console.log('app.js', user);
+                // console.log('app.js', user);
                 // setLoading(false);
             } catch (error) {
                 console.error(error);
             }
         };
         validateUser().then();
-    },[user, user.isLoggedIn]);
+    },[user.isLoggedIn]);
     if (user.isLoggedIn === null) {
         return (
             <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
@@ -60,13 +61,14 @@ const App = () => {
                         {/*<Route path="/category" exact component={CategoryContainer}/>*/}
                         <Route path="/category/:page?" exact component={CategoryContainer}/>
                         <PrivateRoute path="/nft/:artefactId" exact component={SingleItemContainer}/>
-                        <PrivateRoute path="/account/bids" exact component={AccountBidsContainer}/>
+                        <PrivateRoute path="/account/bids/:page?" exact component={AccountBidsContainer}/>
                         <PrivateRoute path="/account/balance" exact component={AccountBalanceContainer} />
                         <PrivateRoute path="/account/my-nfts/:page?" exact component={AccountMyNFTsContainer}/>
                         <PrivateRoute path="/account/withdraw" exact component={AccountWithdrawADAContainer}/>
                         <Route path="/login" exact component={AccountLoginContainer}/>
                         <Route path="/sign-up" exact component={AccountSignUpContainer}/>
                         <Route path="/faq" exact component={FaqContainer}/>
+                        <Route path="/socket" exact component={SocketIO}/>
                         <Route path="" component={Error404}/>
                     </Switch>
                 </Router>

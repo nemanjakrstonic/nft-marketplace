@@ -23,7 +23,7 @@ export default class Bid extends React.Component {
                     }
                 </td>
                 <td className="amount" data-title="AMOUNT">{ item.amount } ADA</td>
-                <td className="text-gray-medium" data-title="DATE">21/07/21 11:16 GMT</td>
+                <td className="text-gray-medium" data-title="DATE">{ item.date }</td>
                 <td>
                     <Link to={"/nft/"+item.name} className="open">
                         <span>View NFT</span>

@@ -10,7 +10,7 @@ export default class Tabs extends React.Component {
         return (
             <div className="col-12 account-navigation">
                 <h2 className="pb-1 mb-4">My NFTs</h2>
-                <p className="pb-4 pb-md-5 mb-4">Explore the NFTs that you own or you bid on.</p>
+                <p className="pb-4 pb-md-5 mb-4">NFTs that you own oryou are bidding on.</p>
                 <div className="account-menu">
                     {
                         Object.keys(tabs).map((key) =>

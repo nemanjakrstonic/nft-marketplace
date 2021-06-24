@@ -48,14 +48,14 @@ export default class AccountBalance extends React.Component {
                                         </div>
                                         <div className="wrapper spent" style={{width: this.state.spentADA/(this.state.spentADA + this.state.availableADA) * 100 +'%'}}>
                                             <span />
-                                            <b>spent</b> { this.state.spentADA } ADA
+                                            <b>unavailable</b> { this.state.spentADA } ADA
                                         </div>
                                     </div>
                                 </div>
                                 <div className="empty-space-130" />
                                 <div className="">
                                     <h4 className="big pb-1 mb-4">Deposit funds</h4>
-                                    <p className="text-gray-darker mb-5">Add funding in the form of Ada from your crypto wallet to the auction account </p>
+                                    <p className="text-gray-darker mb-5">Add funding in the form of ada from your crypto wallet to your auction account </p>
                                     <button type="button" onClick={this.openEnterDepositModal} className="btn btn--gradient mr-3">Make a deposit</button>
                                 </div>
                                 <div className="empty-space-60" />

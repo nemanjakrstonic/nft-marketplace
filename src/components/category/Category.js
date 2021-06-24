@@ -1,57 +1,11 @@
 import React from 'react';
 import Navbar from "../shared/header/Navbar";
 import Footer from "../shared/footer/Footer";
-// import Carousel from "react-multi-carousel";
-// import nfts from "../../resources/category-nfts";
 import { getNFTs } from '../../services/list';
 
-// Resources
-// import arrowGray from "../../assets/img/strelicaLevoSiva.svg";
-// import arrowRed from "../../assets/img/strelicaDesnoC.svg";
 import BlockItem from "./parts/BlockItem";
 import Pagination from "./parts/Pagination";
 
-// const responsive = {
-//     superLargeDesktop: {
-//         breakpoint: { max: 100000, min: 1360 },
-//         items: 4,
-//         slidesToSlide: 4
-//     },
-//     desktop: {
-//         breakpoint: { max: 1360, min: 992 },
-//         items: 3,
-//         slidesToSlide: 3
-//     },
-//     tablet: {
-//         breakpoint: { max: 991, min: 464 },
-//         items: 2,
-//         slidesToSlide: 2
-//     },
-//     mobile: {
-//         breakpoint: { max: 464, min: 0 },
-//         items: 2,
-//         slidesToSlide: 2
-//     }
-// };
-//
-// const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
-//     const { carouselState: { currentSlide, totalItems, slidesToShow } } = rest;
-//     const grayBtn = <img src={arrowGray} alt="" />;
-//     const coloredBtn = <img src={arrowRed} alt="" />;
-//     return (
-//         <div className="carousel-button-group">
-//             <button aria-label="Go to previous slide" className={currentSlide === 0 ? 'disable' : ''} onClick={() => previous()} >
-//                 { grayBtn }
-//                 { coloredBtn }
-//             </button>
-//             <button aria-label="Go to next slide" className={currentSlide === totalItems - slidesToShow ? 'disable' : ''} onClick={() => next()} >
-//                 { grayBtn }
-//                 { coloredBtn }
-//             </button>
-//             {/*<button aria-label="Go to exact slide" onClick={() => goToSlide(currentSlide + 1)}> Go to any slide </button>*/}
-//         </div>
-//     );
-// }
 
 export default class Category extends React.Component {
     constructor(props) {
@@ -86,6 +40,15 @@ export default class Category extends React.Component {
         });
         getNFTs().then(
             (result) => {
+                if (result.length < this.state.currentPage * this.state.itemsPerPage) {
+                    this.setState({
+                        currentPage: 1
+                    }, () => {
+                        this.props.history.push({
+                            pathname: '/category'
+                        });
+                    });
+                }
                 this.setState({
                     isLoaded: true,
                     items: result

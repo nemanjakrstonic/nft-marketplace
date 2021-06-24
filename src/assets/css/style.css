@@ -1,4 +1,4 @@
-html {
+html.smooth-scroll {
     scroll-behavior: smooth;
 }
 body {
@@ -141,7 +141,8 @@ a:hover {
     margin-right: 80px;
 }
 .header-logo img {
-    width: 170px;
+    width: 210px;
+    display: block;
 }
 .menu-items {
     list-style: none;
@@ -1885,6 +1886,15 @@ body .react-slidedown {
     }
 }
 @media (max-width: 1199px) {
+    .header-logo {
+        margin-right: 25px;
+    }
+    .navbar-expand-lg .navbar-nav {
+        margin-left: auto;
+    }
+    .action-bar {
+        margin-left: 0;
+    }
     .slider-items {
         padding-right: 80px;
         padding-left: 80px;
@@ -1905,6 +1915,12 @@ body .react-slidedown {
     }
 }
 @media (max-width: 991px) {
+    .header-logo {
+        margin-right: 0;
+    }
+    .navbar-expand-lg .navbar-nav {
+        margin-left: 0;
+    }
     .collapse {
         padding: 40px 0 40px 0;
     }

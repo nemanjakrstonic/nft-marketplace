@@ -139,7 +139,7 @@ class SingleItem extends React.Component {
                                             </div>
                                         </div>
                                         :
-                                        <Timer time={this.state.time} available={this.state.available} />
+                                        <Timer ends="06/28/2021 00:00:00 GMT-0000" available={this.state.available} />
                                     }
                                     <div className="row-info pt-5">
                                         <span>Number of bids: </span>

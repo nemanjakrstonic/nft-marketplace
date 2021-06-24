@@ -59,7 +59,15 @@ export default class AccountMyNFTs extends React.Component {
         
         myNFTs().then(
             (result) => {
-                // console.log(result, 11);
+                if (result.length < this.state.currentPage * this.state.itemsPerPage) {
+                    this.setState({
+                        currentPage: 1
+                    }, () => {
+                        this.props.history.push({
+                            pathname: '/account/my-nfts'
+                        });
+                    });
+                }
                 this.setState({
                     isLoaded: true,
                     items: result,
@@ -184,7 +192,6 @@ export default class AccountMyNFTs extends React.Component {
         } else {
             currentItems = [];
         }
-        // const currentItems = this.state.items.slice(indexOfFirstItem, indexOfLastItem);
     
         return (
             <div>
@@ -208,7 +215,7 @@ export default class AccountMyNFTs extends React.Component {
                                     <Tabs
                                         changeTab={this.changeTab}
                                         activeTab={ this.state.activeTab }
-                                        tabs={['All', 'My bids', 'Owned by me']}
+                                        tabs={['All', 'My active bids', 'Owned by me']}
                                         types={['all', 'bidded', 'owned']}
                                     />
                                     <div className="col col-custom-1 py-5 pl-lg-5 my-lg-5 w-100">

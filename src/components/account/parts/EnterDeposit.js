@@ -39,8 +39,8 @@ export default class EnterDeposit extends React.Component {
                         </button>
                     </div>
                     <div className="modal-body">
-                        <p>To continue bidding, you need to deposit more ADA into your bidding account. <br /><Link to="#" className="hover-effect-1">Help</Link></p>
-                        <p className="pt-4 mb-3">To deposit, send ADA to this address. </p>
+                        <p className="mb-2">To bid, you need to deposit more ADA into your bidding account. <Link to="/faq" className="hover-effect-1">Help</Link></p>
+                        <p className="mb-5">To deposit, send ADA to this address. </p>
                         <button type="button" onClick={this.generateAddress} className="btn btn--gradient mr-3 mb-4">Generate address</button>
                         {
                             this.state.showAddress ?
@@ -54,10 +54,11 @@ export default class EnterDeposit extends React.Component {
                                 :
                                 ''
                         }
+                        <p className="font-size-14 font-weight-medium">*Please note: a transaction fee of x xxx ADA will be deducated from your deposit amount.</p>
                         <p className="font-size-14 font-weight-medium text-black"><i>*Note: it may take up to 10 minutes for the blockchain to confirm this transfer and credit your bidding account.</i></p>
                     </div>
-                    <div className="modal-footer pt-3">
-                        <button onClick={this.closeModal} className="remove-style-button"><span className="btn btn--white">Cancel</span></button>
+                    <div className="modal-footer pt-4">
+                        <button onClick={this.closeModal} className="remove-style-button"><span className="btn btn--white">Close</span></button>
                     </div>
                 </Modal>
             </div>

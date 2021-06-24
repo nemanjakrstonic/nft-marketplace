@@ -84,6 +84,12 @@ class LandingPage extends React.Component {
     executeScrollHowItWorks = () => this.howItWorks.current.scrollIntoView()
     executeScrollAbout = () => this.about.current.scrollIntoView()
     
+    componentWillMount() {
+        document.documentElement.classList.add('smooth-scroll');
+    }
+    componentWillUnmount() {
+        document.documentElement.classList.remove('smooth-scroll');
+    }
     componentDidMount() {
         if (this.props.location.hash === '#about') {
             this.executeScrollAbout();
@@ -120,7 +126,7 @@ class LandingPage extends React.Component {
                         <div className="col-lg-5 mr-auto pb-5 mb-5 pb-lg-0 mb-lg-0">
                             <h6 className="subheading pb-1 mb-3"><span className="text-gradient">OUR INAUGURAL</span></h6>
                             <h1 className="font-weight-normal pb-3 mb-4">WOLFRAM NFT AUCTION</h1>
-                            <p className="pb-3 mb-4">Wolfram Research and Wolfram Blockchain Labs presents our initial collection of NFTs built on the Cardano blockchain at our “Items from the Computational Universe” Auction.<br/><br/>We invite you to join the live event on 15 June, where the “Items from the Computational Universe” will be “live minted”, selected and represented as non-fungible tokens (NFTs) on the Cardano blockchain, and will be made available on LiveMinting.com to some lucky people who have attended Wolfram Virtual Events or Cardano Virtual Events for free.</p>
+                            <p className="pb-3 mb-4">Wolfram Research and Wolfram Blockchain Labs presents our initial collection of NFTs built on the Cardano blockchain at our “Items from the Computational Universe” Auction.<br/><br/>We invite you to join the live event on 19th July, where the “Items from theComputational Universe” will be “live minted”, selected and represented asnon-fungibletokens (NFTs) on the Cardano blockchain. These NFTs will be made available on <Link to="LiveMinting.com" target="_blank" className="hover-effect-1">LiveMinting.com</Link> to some lucky people who have attended Wolfram Virtual Events orCardano Virtual Events for free. </p>
                             <Link to="/sign-up" className="btn btn--gradient mr-4">Register</Link>
                             <Link to="#" onClick={this.executeScrollHowItWorks} className="btn btn--white">Learn more</Link>
                         </div>
@@ -128,7 +134,7 @@ class LandingPage extends React.Component {
                             <div className="countdown text-center">
                                 <Timer ends="06/28/2021 00:00:00 GMT-0000" />
                                 <img src={wlogo} alt="" />
-                                <p className="pb-4 mb-2">In partnership with IOHK.</p>
+                                <p className="pb-4 mb-2">Powered by Cardano</p>
                             </div>
                         </div>
                     </div>
@@ -140,7 +146,7 @@ class LandingPage extends React.Component {
                             <div className="col-12">
                                 <h4 className="big font-weight-normal mb-5">ABOUT US</h4>
                                 <h5 className="mb-3">Wolfram</h5>
-                                <p className="mb-5">Founded by Stephen Wolfram in 1987, Wolfram Research is one of the world’s most respected computer, web, and cloud software companies—as well as a powerhouse of scientific and technical innovation. As pioneers in computation and computational knowledge, we have pursued a long-term vision to develop the science, technology, and tools to make computation an ever-more-potent force in today’s and tomorrow’s world.</p>
+                                <p className="mb-5">Founded by Stephen Wolfram in 1987, Wolfram Research is one of the world’s most respected computer, web, and cloud software companies — as well as a powerhouse of scientific and technical innovation. As pioneers in computation and computational knowledge, we have pursued a long-term vision to develop the science, technology, and tools to make computation an ever-more-potent force in today’s and tomorrow’s world.</p>
                                 <h5 className="mb-3">Wolfram Blockchain Labs</h5>
                                 <p className="mb-5">Wolfram Blockchain Labs provides distributed ledger technology ecosystems with the tools necessary to assist in the development of a wide variety of smart, contract-based applications. Wolfram Blockchain Labs is the DLT-focused subsidiary of Wolfram Research, Inc., creator of Mathematica, Wolfram|Alpha and the Wolfram Language. Wolfram is the leader in developing technology and tools that inject sophisticated computational intelligence into everything.</p>
                                 <h5 className="mb-3">Cardano</h5>
@@ -159,17 +165,17 @@ class LandingPage extends React.Component {
                                 <div className="pt-4"/>
                                 <div className="timeline-item left">
                                     <TimeLineTitle title="CREATE ACCOUNT" />
-                                    <p className="text-gray-darker mb-5">Participate in the event by registering on the website</p>
+                                    <p className="text-gray-darker mb-5">Get started by <Link to="/login" className="hover-effect-1">registering</Link>.</p>
                                     <TimeLineImage image={illustration1} />
                                 </div>
                                 <div className="timeline-item right">
                                     <TimeLineTitle title="FUND YOUR ACCOUNT" />
-                                    <p className="text-gray-darker mb-5">In order to bid, you will need funds in the form of ada (the cryptocurrency of the Cardano blockchain). Connect your crypto wallet and send a desired amount of Ada to the auction address which will be provided to you. This is your Auction Account. (Disclaimer on Security for users to fund the auction address)<br/><br/>Not sure how to obtain your wallet or to buy ada? Check out our Help section.</p>
+                                    <p className="text-gray-darker mb-5">In order to bid, you need to deposit ada (thecryptocurrency of the Cardano blockchain) into theauction site.<br/><br/>Click “Deposit’ at the top of the screen totransferada to the auction site. Once your ada is on thesite, you can bid on NFTs. It may take a fewminutes for your ada to show up on the auctionsite. When it does, you are ready to bid.<br/><br/>Want to know how to obtain a wallet or to buy ada? <br/><Link to="/faq" className="hover-effect-1">Check out our Help section</Link>.</p>
                                     <TimeLineImage image={illustration2} />
                                 </div>
                                 <div className="timeline-item left">
                                     <TimeLineTitle title="PARTICIPATE IN THE AUCTION" />
-                                    <p className="text-gray-darker mb-5">Bid on your desired items from your auction account.<br/><br/>Be sure to have adequate funding in your auction account to take part in the bidding. You can always top up the balance in your account by depositing more ADA.</p>
+                                    <p className="text-gray-darker mb-5">Click “Buy” in the main menu to go to the auction.<br/><br/>You can bid on as many NFTs as you like. Auctions can run over several days, so keep checking back to see how your bids are doing.<br/><br/>When you bid on an item, the amount of your bid will be deducted from your balance. If you are outbid on that item, your bid will be refunded back to your balance instantly.<br/><br/>Be sure to have adequate funding in your auction account to take part in the bidding. You can always top up the balance in your account by depositing more ada.</p>
                                     <TimeLineImage image={illustration3} />
                                 </div>
                                 <div className="timeline-item right">
@@ -188,7 +194,7 @@ class LandingPage extends React.Component {
                         <div className="col-12">
                             <div>
                                 <h4 className="big font-weight-normal text-gray-medium mb-5 pl-4">The collection</h4>
-                                <p className="max-width-px-700 mx-auto pb-5 mb-2">The Wolfram NFTs are unique representations of cellular automata (simple computational systems that are capable of exhibiting advanced behavior such as chaos and complexity).<br/><br/>The “Items from the Computational Universe” collection at the Wolfram Auction will represent Stephen Wolfram's first ever live minting event, an NFT-oriented event that merges art, science, popular culture and technology.</p>
+                                <p className="max-width-px-700 mx-auto pb-5 mb-2">When an auction ends, the NFT will be transferred to highest bidder ́s collection. You can build your collection by participating in subsequent Wolfram auctions.<br/><br/>You can withdraw ada from you account at any time after a 72 hour grace period from the last bid you place in any auction.This is to ensure site security.</p>
                             </div>
                             <Carousel
                                 responsive={responsive}
